@@ -38,8 +38,10 @@ if(mode=='web'&&webLocal&&!cancelled){
 }
 if(cancelled)return;
 const tx=e?(e.clientX-d.sx):0;
-if(d.on&&Math.abs(tx)>40)turn(tx<0?1:-1);
-else if(d.m<6&&e){const h=hit(e);if(h&&mode=='pdf')turn(h.uv.x>.5?1:-1);else if(h&&mode=='video')vp()}
+	if(d.on&&Math.abs(tx)>40)turn(tx<0?1:-1);
+	else if(d.m<6&&e){const h=hit(e);
+	if(h&&mode=='web'&&h.uv.y<.095&&h.uv.x<.13){tabletBack();return}
+	if(h&&mode=='pdf')turn(h.uv.x>.5?1:-1);else if(h&&mode=='video')vp()}
 }
 cv.onpointerup=e=>releaseDr(e,false);
 cv.onpointercancel=e=>releaseDr(e,true);
@@ -84,6 +86,7 @@ vid.onloadedmetadata=()=>{if(vid.videoWidth)fit(vid.videoWidth/vid.videoHeight,v
 $('vd').onclick=useDemo;
 $('go').onclick=()=>{let u=$('url').value.trim();if(!u)return;if(!/^https?:/i.test(u))u='https://'+u;webLocal=false;fr.src=u;syncWeb()};
 $('bi').onclick=()=>{webLocal=true;fr.src='about:blank';syncWeb();webDirty=true};
+$('tabletBack').onclick=tabletBack;
 $('ot').onclick=()=>{let u=$('url').value.trim();if(u)window.open(/^https?:/i.test(u)?u:'https://'+u,'_blank','noopener')};
 $('cs').onclick=shoot;
 $('cf').onclick=()=>{if(mode!=='cam')return;camFacing=camFacing=='user'?'environment':'user';startCam()};
