@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tablet Studio</title>
+<link rel="stylesheet" href="css/styles.css">
+</head><body>
+<canvas id="c"></canvas>
+<div id="css"><div id="cm"><div id="web"><iframe id="fr" title="Tablet web view" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe></div></div></div>
+<div id="hud" class="g"><h1>📱 Tablet Studio</h1>
+<div class="r"><span>Screen</span><b id="sMode">PDF</b></div><div class="r"><span>Page</span><b id="sPg">1 / 6</b></div>
+<div class="r o"><span>Camera</span><b id="sCam">Intro</b></div><div class="r o"><span>FPS</span><b id="sFps">--</b></div></div>
+<div id="rb"><i></i><span id="rt">REC 00:00</span></div>
+<div id="cd"><div id="cdn">3</div><div>Auto pro shooting</div></div>
+<div id="panel" class="g open">
+<div class="l"><button id="pb">⏸ Pause</button><button id="rs">↺ Restart</button><span>Speed</span><input id="spd" type="range" min=".5" max="3" step=".1" value="1" aria-label="Playback speed"><b id="spv">1.0×</b></div>
+<div class="l"><button id="mb">🔊 Mute</button><span>Volume</span><input id="vol" type="range" min="0" max="1" step=".01" value=".7" aria-label="Volume"></div>
+<div class="l"><span>Screen</span><button data-m="pdf" class="on">📄 PDF</button><button data-m="video">🎬 Video</button><button data-m="web">🌐 Web</button><button data-m="cam">📷 Camera</button></div>
+<div class="l" id="o_pdf"><button id="pdfB">Open PDF…</button><button id="pv" aria-label="Previous page">◀</button><button id="nx" aria-label="Next page">▶</button><button id="dm">Demo pages</button></div>
+<div class="l" id="o_video" hidden><button id="vidB">Open video…</button><button id="vp">⏯ Play / pause</button><button id="vd">Demo clip</button></div>
+<div class="l" id="o_web" hidden><button id="bi">Built-in page</button><input type="text" id="url" placeholder="https://…" aria-label="Website address"><button id="go">Load site</button><button id="ot">↗ New tab</button><div class="hint">The built-in page scrolls with touch-style inertia. Real sites load in a live overlay, and many block embedding.</div></div>
+<div class="l" id="o_cam" hidden><button id="cs">⚪ Take photo</button><button id="cf">🔄 Flip camera</button><span class="hint" id="camMsg">Allow camera access when asked.</span></div>
+<div class="l"><button id="rbn" style="background:rgba(220,38,38,.8);color:#fff">⏺ Start recording</button><button id="snap">📷 Snapshot</button><label><input id="rsnd" type="checkbox" checked> Record sound</label></div>
+<div class="l pro"><label><input id="pro" type="checkbox"> 🎥 <b>Auto professional shooting</b></label>
+<select id="asp" disabled aria-label="Aspect ratio"><option value="9:16">Portrait 9:16</option><option value="16:9">Landscape 16:9</option></select>
+<select id="sty" disabled aria-label="Style"><option value="cin">Cinematic cuts</option><option value="loop">Seamless 10 s loop</option></select>
+<select id="qual" disabled aria-label="Quality"><option value="s">Smooth · 720p 30fps</option><option value="h" selected>High · 1080p 30fps</option><option value="u">Ultra · 1080p 60fps</option></select>
+<select id="len" disabled aria-label="Length"><option value="0">Manual stop</option><option value="15">15 s</option><option value="30" selected>30 s</option><option value="60">60 s</option></select></div>
+<div class="l pro" id="loopO" hidden><span>🔁 Loop</span><select id="cyc"><option value="1">1× · 10 s</option><option value="2">2× · 20 s</option><option value="3">3× · 30 s</option></select><select id="lcam"><option value="o">Orbit 360°</option><option value="s">Chase + sway</option></select></div>
+<div class="hint">Pro preview renders at half size. Pages, video, camera and the built-in browser are captured in recordings; an embedded real website isn’t.</div>
+<div class="hint kb">Space pause · R record · M mute · P snapshot · ← → pages · 1 2 3 4 screens · drag/wheel orbit</div></div>
+<div id="quick"><button id="qp" aria-label="Pause or play">⏸</button><button id="qr" class="rec" aria-label="Start or stop recording">⏺</button><button id="qg" aria-label="Show or hide controls">⚙</button></div>
+<div id="modal"><div class="card g"><div id="mv"></div><div class="a"><span class="hint">Right-click or long-press to save if the button doesn’t download.</span><button id="mc">Close</button><a id="dl" class="btn" download>⬇ Download</a></div></div></div>
+<input type="file" id="pdfIn" accept="application/pdf" hidden><input type="file" id="vidIn" accept="video/*" hidden>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="js/01-scene-and-screen-layers.js"></script>
+<script src="js/02-audio-pages-camera-modes.js"></script>
+<script src="js/03-camera-layout-and-modal.js"></script>
+<script src="js/04-recording.js"></script>
+<script src="js/05-animation-loop.js"></script>
+<script src="js/06-input-controls-and-startup.js"></script>
+</body></html>
